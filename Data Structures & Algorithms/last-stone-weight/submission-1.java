@@ -1,0 +1,18 @@
+class Solution {
+    public int lastStoneWeight(int[] stones) {
+        // Solve using bucket sort
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for(int stone: stones) {
+            pq.offer(stone);
+        }
+
+        while(pq.size()>1) {
+            int x = pq.poll();
+            int y = pq.poll();
+
+            pq.offer(x-y);
+        }
+
+        return pq.peek();
+    }
+}
